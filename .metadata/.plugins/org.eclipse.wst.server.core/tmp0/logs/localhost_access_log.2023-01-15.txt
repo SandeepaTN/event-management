@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:02:09 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4339
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:04:18 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4319
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:09:02 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 2603
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:11:12 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 2603
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:11:40 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 2656
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:13:34 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4319
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:14:03 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4319
+127.0.0.1 - - [15/Jan/2023:00:49:22 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [15/Jan/2023:00:49:30 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4319

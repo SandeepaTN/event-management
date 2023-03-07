@@ -1,0 +1,11 @@
+127.0.0.1 - - [06/Mar/2023:20:17:39 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:17:49 +0530] "GET /events_manage/home.jsp HTTP/1.1" 200 2198
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:17:50 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:17:53 +0530] "GET /events_manage/login.jsp HTTP/1.1" 200 1499
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:01 +0530] "POST /events_manage/login HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:02 +0530] "GET /events_manage/org.jsp HTTP/1.1" 200 2220
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:05 +0530] "GET /events_manage/delet.jsp HTTP/1.1" 404 739
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:08 +0530] "GET /events_manage/org.jsp HTTP/1.1" 200 2220
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:10 +0530] "GET /events_manage/addev.jsp HTTP/1.1" 500 4319
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:14 +0530] "GET /events_manage/org.jsp HTTP/1.1" 200 2220
+0:0:0:0:0:0:0:1 - - [06/Mar/2023:20:18:22 +0530] "GET /events_manage/login.jsp HTTP/1.1" 200 1499

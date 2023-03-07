@@ -1,0 +1,126 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Event Manager</title>
+<style>
+ body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        text-align: center;
+        padding: 20px;
+        background-color: #006699;
+        color: #fff;
+        margin: 0;
+    } 
+    h2{
+    text-align:center;}  
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+     padding: 10px 20px;
+        background-color:#3d5a80;
+        color: #fff;
+        
+}
+
+.buttons input {
+    margin: 0 10px;
+}
+
+form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+       
+    }
+    th {
+        background-color: #f2f2f2;
+        }
+        @media only screen and (max-width: 768px) {
+        table {
+            display: block;
+            overflow-x: auto;
+        }
+        
+    }
+</style>
+</head>
+<body>
+<h1>Malnad College of Engineering</h1>
+<h2>Event Manager</h2>
+<div class="buttons">
+    <input type="button" value="Admin Login" onclick="location.href='admin.jsp'" />
+    <input type="button" value="Organizer Login" onclick="location.href='login.jsp'" />
+    <input type="button" value="Home" onclick="location.href='home.jsp'" />
+    
+</div>
+<form action="search.jsp" method="post">
+    <input type="text" name="usn1" placeholder="Enter USN">
+    <input type="submit" value="search">
+</form>
+<%
+session.setAttribute("usn1", request.getParameter("usn1"));
+String usn2 = null;
+if(session.getAttribute("usn1")!=null)
+usn2=(String)session.getAttribute("usn1");
+request.setAttribute("usn2", usn2);
+%>
+
+<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/event_management" user="root" password="123456"/>
+<sql:query dataSource="${db}" var="result">
+SELECT a.name, a.ev_id , ev_name, ev_date ,ev_time ,venue
+from event as e, attendees as a
+where a.usn='${usn2}' and e.ev_id=a.ev_id;
+</sql:query>
+
+<table>
+    <thead>
+        <tr>
+                    <th>Name</th>
+                    <th>Event ID</th>
+                   <th>Event Name</th>
+                   <th>Date</th>
+                   <th>Time</th>
+                   <th>Venue</th>
+                  
+
+      
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="row" items="${result.rows}">
+            <tr><td>${row.name}</td>
+                <td>${row.ev_id}</td>
+                <td>${row.ev_name}</td>
+                <td>${row.ev_date}</td>
+                <td>${row.ev_time}</td>
+                <td>${row.venue}</td>
+                
+                  
+            </tr>
+        </c:forEach>
+    </tbody></table>
+   
+</body>
+</html>

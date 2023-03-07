@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+response.setHeader("Expires", "0");
+if(session.getAttribute("username")==null)
+{
+	response.sendRedirect("login.jsp");
+}%>
+<%
+int org_id1 = 0;
+if(session.getAttribute("org_id")!=null)
+org_id1=(int)session.getAttribute("org_id");
+request.setAttribute("org_id1", org_id1);
+%>
+
+<h1>Malnad College Of Engineering</h1><br>
+<a href="add.jsp" class="btn">Add</a>
+ <a href="update.jsp" class="btn">Update</a>
+  <a href="delet.jsp" class="btn">Delete Event</a>
+<a href="attendence.jsp" class="btn">Attendance</a>
+<br>
+ <h2>${username}</h3> <br>
+<h3>Organization ID:${org_id1 }<h3></h3><br>
+<form action="insertEvent" method="post">
+  
+ 
+  <label for="ev_name">Event Name:</label>
+  <input type="text" id="ev_name1" name="ev_name1" required>
+  <br>
+  <label for="ev_date">Event Date:</label>
+  <input type="text" id="ev_date1" name="ev_date1" pattern="^\d{4}\-((0[1-9])|(1[012]))\-((0[1-9])|([12][0-9])|(3[01])" placeholder="yyyy-mm-dd" required>
+  <br>
+  <label for="ev_time">Event Time:</label>
+  <input type="text" id="ev_time1" name="ev_time1" pattern="(2[0-3]|[01][0-9]):[0-5][0-9]" placeholder="hh:mm" required>
+  <br>
+  <label for="venue">Event Venue:</label>
+  <input type="text" id="venue1" name="venue1" required>
+  <br>
+  <label for="description">Event Description:</label>
+  <input type="text" id="description1" name="description1">
+  <br>
+  <label for="contact">Contact Number:</label>
+  <input type="tel" id="contact1" name="contact1" pattern="[0-9]{10}" required>
+  <br>
+  <label for="ev_link">Event Link:</label>
+  <input type="text" id="ev_link1" name="ev_link1">
+  <br>
+  <input type="submit" value="Submit">
+</form>
+<%
+
+/*ev_id	int	NO	PRI		auto_increment
+org_id	int	NO	MUL		
+ev_name	varchar(45)	NO			
+ev_date	date	NO			
+ev_time	time	YES			
+venue	varchar(100)	NO			
+desciption	varchar(255)	YES			
+ev_link	varchar(255)	YES			
+contact	varchar(15)	NO	*/		
+
+
+
+String url = "jdbc:mysql://localhost:3306/event_management";
+String username = "root";
+String password = "123456";
+
+String ev_name = request.getParameter("ev_name1");
+String ev_date = request.getParameter("ev_date1");
+String ev_time = request.getParameter("ev_time1");
+String venue = request.getParameter("venue1");
+String description = request.getParameter("description1");
+String contact = request.getParameter("contact1");
+String ev_link = request.getParameter("ev_link1");
+int org_id = Integer.parseInt(request.getParameter("org_id1"));
+
+try{
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection(url,username,password);
+PreparedStatement st = con.prepareStatement("INSERT INTO event(org_id, ev_name, ev_date, ev_time, venue, desciption, ev_link, contact) VALUES(?,?,?,?,?,?,?,?)");
+st.setInt(1,org_id);
+st.setString(2,ev_name);
+st.setString(3,ev_date);
+st.setString(4,ev_time);
+st.setString(5,venue);
+st.setString(6,description);
+st.setString(7,ev_link);
+st.setString(8,contact);
+int i = st.executeUpdate();
+if(i>0){
+out.println("Event added successfully!");
+}
+else{
+out.println("Event not added, please try again later.");
+}
+con.close();
+}
+catch(SQLException e){
+e.printStackTrace();
+}
+%>
+
+<form action="logout">
+<input type="submit" value="logout">
+</body>
+</html>
+
+
+
