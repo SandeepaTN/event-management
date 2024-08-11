@@ -31,7 +31,7 @@ public class ad_login extends HttpServlet {
 
             // Connect to the database
             conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/event_management", "root","123456");
+                "jdbc:mysql://localhost:3306/event_management", "root","***");
 
             // Create a statement
             Statement stmt = conn.createStatement();
